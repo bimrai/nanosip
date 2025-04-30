@@ -1,0 +1,266 @@
+:root {
+  --font-pixel: 'Press Start 2P', monospace;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: var(--font-pixel);
+  background-color: #0d0d0d;
+  color: #f0f0f0;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+/* Layout structure */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  padding: 60px 20px 60px 20px; /* Top-bottom padding */
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* splits LEFT and RIGHT */
+  padding: 0 40px;
+  z-index: 1000;
+}
+
+/* Logo Left */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.text-logo {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Links Right */
+.navbar-right ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.navbar-right a {
+  color: #949393;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+  font-size: 18px; 
+}
+
+.navbar-right a.active, .navbar-right a:hover {
+  color: #fff;
+}
+
+/* Optional: Image sizing inside left */
+.navbar-left img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+
+/* Footer fixed */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #111;
+  text-align: center;
+  padding: 15px;
+  color: #888;
+}
+
+/* Home Page Content */
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.home-left, .home-right {
+  flex: 1;
+  max-width: 500px;
+}
+
+.home-right h1 {
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+
+.home-right p {
+  font-size: 30px;
+  color: #bbb;
+}
+
+
+/* Floating Animation */
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+/* Apply to image */
+.home-left img {
+  animation: float 6s ease-in-out infinite;
+}
+
+
+.projects-page {
+  padding-top: 90px;
+  padding-bottom: 80px;
+  text-align: center;
+  min-height: 100vh;
+  overflow-y: auto; /* This allows scrolling only inside projects page */
+  margin: 0 30vh 0 30vh;
+}
+
+.projects-page h1 {
+  margin-bottom: 40px;
+  font-size: 40px;
+  font-size: 32px; 
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* force 4 columns */
+  gap: 30px;
+  padding: 0 50px;
+}
+
+
+.project-card {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.project-info {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  transition: 0.3s;
+}
+
+.project-info h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-size: 18px; 
+}
+
+.project-info p {
+  font-size: 16px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s, max-height 0.3s;
+  font-size: 16px; 
+}
+
+/* Show description nicely on hover */
+.project-card:hover .project-info p {
+  opacity: 1;
+  max-height: 100px;
+}
+
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.education-item h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.education-item p {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.contact-page {
+  padding-top: 330px;
+  padding-bottom: 80px;
+  text-align: center;
+  min-height: 100vh;
+  overflow-y: auto; /* Only ContactPage is scrollable */
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.social-row a {
+  font-size: 40px;
+  color: #949393;
+  transition: color 0.3s;
+}
+
+.social-row a:hover {
+  color: #fff;
+}
+
