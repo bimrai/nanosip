@@ -1,12 +1,21 @@
-
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function Home() {
   const [waterIntake, setWaterIntake] = useState(0);
   const [currentImageSrc, setCurrentImageSrc] = useState("/assets/level1.png");
+  const clickSoundRef = useRef(null);
+  const iconChangeSoundRef = useRef(null);
+
+  // Initialize Audio only on the client
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      clickSoundRef.current = new Audio("/assets/button.wav");
+      iconChangeSoundRef.current = new Audio("/assets/powerup.wav");
+    }
+  }, []);
 
   const hydrationLevels = [
     { limit: 0, src: "/assets/level1.png" },
@@ -17,11 +26,9 @@ export default function Home() {
     { limit: 2000, src: "/assets/level6.png" },
   ];
 
-  const clickSound = new Audio("/assets/button.wav");
-  const iconChangeSound = new Audio("/assets/powerup.wav");
-
   const addWater = (amount) => {
-    clickSound.cloneNode().play();
+    // Clone and play click sound
+    if (clickSoundRef.current) clickSoundRef.current.cloneNode().play();
 
     setWaterIntake((prev) => {
       const newIntake = prev + amount;
@@ -31,7 +38,7 @@ export default function Home() {
       ).src;
 
       if (newImage !== currentImageSrc) {
-        iconChangeSound.cloneNode().play();
+        if (iconChangeSoundRef.current) iconChangeSoundRef.current.cloneNode().play();
       }
 
       setCurrentImageSrc(newImage);
@@ -70,6 +77,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 // "use client";
 
